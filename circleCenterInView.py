@@ -100,17 +100,17 @@ class circleCenterInView:
 
         cnts = imutils.grab_contours(cnts)
         #print(cnts)
-        r1 = randint(0,len(cnts[0]))
+        r1 = randint(int(len(cnts[0])/2),len(cnts[0]))
         p1 = cnts[0][r1]
 
-        r2 = randint(0,len(cnts[0]))
+        r2 = randint(int(len(cnts[0])/2),len(cnts[0]))
         while r2==r1:
-            r2 = randint(0, len(cnts[0]))
+            r2 = randint(int(len(cnts[0])/2), len(cnts[0]))
         p2 = cnts[0][r2]
 
-        r3 = randint(0, len(cnts[0]))
+        r3 = randint(int(len(cnts[0])/2), len(cnts[0]))
         while r3 == r1 or r3 == r2:
-            r3 = randint(0, len(cnts[0]))
+            r3 = randint(int(len(cnts[0])/2), len(cnts[0]))
         p3 = cnts[0][r3]
         #print(p1,p2,p3)
         return p1,p2,p3
