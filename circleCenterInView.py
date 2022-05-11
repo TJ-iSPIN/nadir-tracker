@@ -29,13 +29,14 @@ class circleCenterInView:
             M = cv2.moments(c)
             cX = int(M["m10"] / M["m00"])
             cY = int(M["m01"] / M["m00"])
-            print((cX,cY))
+            #print((cX,cY))
             # draw the center of the shape on the image
             cv2.circle(mask, (cX, cY), 7, (0, 0, 255), -1)
 
             # show the image
             plt.imshow(mask, cmap='gray')
             plt.show()
+        return cX,cY
     def approximater(self):
 
         pt1,pt2,pt3 = self.threePts()
@@ -82,7 +83,8 @@ class circleCenterInView:
         #r = round(sqrt(sqr_of_r), 5);
         #print("Radius",r)
 
-        print("Center = (", h, ", ", k, ")")
+        #print("Center = (", h, ", ", k, ")")
+        return h,k
 
 
 
@@ -100,20 +102,19 @@ class circleCenterInView:
 
         cnts = imutils.grab_contours(cnts)
         #print(cnts)
-        r1 = randint(int(len(cnts[0])/2),len(cnts[0]))
+        r1 = randint(int(len(cnts[0])/2),len(cnts[0])-1)
         p1 = cnts[0][r1]
 
-        r2 = randint(int(len(cnts[0])/2),len(cnts[0]))
+        r2 = randint(int(len(cnts[0])/2),len(cnts[0])-1)
         while r2==r1:
-            r2 = randint(int(len(cnts[0])/2), len(cnts[0]))
+            r2 = randint(int(len(cnts[0])/2), len(cnts[0])-1)
         p2 = cnts[0][r2]
 
-        r3 = randint(int(len(cnts[0])/2), len(cnts[0]))
+        r3 = randint(int(len(cnts[0])/2), len(cnts[0])-1)
         while r3 == r1 or r3 == r2:
-            r3 = randint(int(len(cnts[0])/2), len(cnts[0]))
+            r3 = randint(int(len(cnts[0])/2), len(cnts[0])-1)
         p3 = cnts[0][r3]
         #print(p1,p2,p3)
         return p1,p2,p3
-
 
 
